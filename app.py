@@ -2,6 +2,9 @@ import streamlit as st
 
 from dotenv import load_dotenv; load_dotenv()
 
+from transcribe import transcribe_audio, refine_transcription
+from parse import structured_output
+
 
 st.title("Structured Audio Output")
 st.info("Extract structured output from spoken audio files.")
@@ -16,20 +19,22 @@ if uploaded_file is not None and output_fields:
     st.write("**Output fields:**")
     st.write(output_fields)
 
-    with st.spinner("Transcribing..."):
-        st.write("# Transcription")
+    st.write("# Transcription")
+    transcription_box = st.empty()
 
-    st.write("Sample transcription output.")
+    with st.spinner("Transcribing..."):
+        raw_transcript: str = transcribe_audio(uploaded_file.getvalue())
+        transcription_box.write(raw_transcript)
+        refined_transcript: str = refine_transcription(raw_transcript)
+        transcription_box.write(refined_transcript)
+
+    st.write("# Structured Output")
 
     with st.spinner("Analyzing..."):
-        st.write("# Structured Output")
-        structured_output: dict[str, str] = {
-            "Goal": "Sample goal",
-            "Next Steps": "Sample next steps"
-        }
+        output: dict[str, str] = structured_output(output_fields, refined_transcript)
         
     md_string = ""
-    for field, value in structured_output.items():
+    for field, value in output.items():
         md_string += f"### {field}\n {value}\n\n"
 
     st.markdown(md_string)
