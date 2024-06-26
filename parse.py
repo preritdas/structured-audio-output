@@ -10,7 +10,7 @@ client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 PROMPT = """Take the following voice transcription and format it into the following categories: {keys_desc}
 
 You ONLY respond in JSON format with the following keys: {keys_str}
-The values for each key should be a STRING. Schema: {"key": "value"}
+The values for each key should be a STRING; ex. "key": "value"
 
 Retain the original text when inserting it into the JSON sections; do not rewrite it.
 If a certain key/category has no associated relevant information from the transcript, the JSON key value should be an empty string.
