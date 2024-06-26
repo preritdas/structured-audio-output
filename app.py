@@ -1,5 +1,7 @@
 import streamlit as st
 
+from dotenv import load_dotenv; load_dotenv()
+
 
 st.title("Structured Audio Output")
 st.info("Extract structured output from spoken audio files.")
