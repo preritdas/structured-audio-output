@@ -11,7 +11,11 @@ st.info("Extract structured output from spoken audio files.")
 
 
 uploaded_file = st.file_uploader("Choose an audio file", type=["wav", "mp3", "m4a"])
-output_fields: list[str] = st.text_input("Output fields (comma separated)", "Goal, Next Steps").split(", ")
+output_fields_str: list[str] = st.text_input("Output fields (comma separated)", help="Ex. 'Goal, Next Steps'")
+
+output_fields: list[str] = []
+if output_fields_str:
+    output_fields = [field.strip() for field in output_fields_str.split(",")]
 
 
 if uploaded_file is not None and output_fields:
