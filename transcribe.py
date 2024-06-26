@@ -28,11 +28,11 @@ You always respond only with the refined transcription. The beginning of your re
 """
 
 
-def transcribe_audio(audio_bytes: bytes) -> tuple[str, list[str]]:
+def transcribe_audio(audio_bytes: bytes) -> str:
     response = transcriber.transcribe(audio_bytes)
     transcription = response.text
 
-    return transcription, [p.text for p in response.get_paragraphs()]
+    return transcription
 
 def refine_transcription(transcription: str) -> str:
     if not transcription.strip():
