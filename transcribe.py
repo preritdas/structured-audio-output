@@ -39,7 +39,7 @@ def refine_transcription(transcription: str) -> str:
         return "*Empty Transcription*"
 
     message = anthrophic_client.messages.create(
-        model="claude-3-opus-20240229",
+        model="claude-3-5-sonnet-20240620",
         max_tokens=4096,
         temperature=0,
         system=REFINE_PROMPT,
