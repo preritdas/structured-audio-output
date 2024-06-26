@@ -2,3 +2,5 @@ streamlit
 anthropic
 openai
 assemblyai
+
+python-dotenv
