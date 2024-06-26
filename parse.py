@@ -13,6 +13,7 @@ You ONLY respond in JSON format with the following keys: {keys_str}
 The values for each key should be a STRING. Schema: {"key": "value"}
 
 Retain the original text when inserting it into the JSON sections; do not rewrite it.
+If a certain key/category has no associated relevant information from the transcript, the JSON key value should be an empty string.
 
 Transcription:
 
